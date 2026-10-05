@@ -1,3 +1,4 @@
+
 # 2**3 = 2^3
 
 print(2**3)
@@ -291,6 +292,7 @@ area of a circle = math.pi * 2 ** 4
 area = pi *radius *radius. 
 """
 
+    
 #NUMPY
 """
 It is difficult to perform ceratain operations in lists such as finding  the sum of each elemnt in two fifferent lists or performing operations on twoo different lists.
@@ -477,4 +479,31 @@ This creates a 2D array with 5000 rows and two height and weight columns in each
 The function above always runs different values all the time.
 In order to ensure that the same results are given always, run the code/function 
 np.random.seed(123) before you run the function np.ramdom.normal().
+"""
+
+#MATPLOTLIB
+"""
+It is a python package that is used in data visualization to view data in a more graphical format.
+
+You first begin by installing the Mtplotlib packge by typing:
+pip3 install matplotlib
+
+NB: matplotlib uses numpys arrays for data visualization hence installing matplotlibs package automaticaly imports numpy if it was not available already.
+But installing numpy package does not mean that the matplotlib package is installed automatically. Hence when you use this approach, you have to install matplotlib as well.
+
+#import matplotlib.pyplot as plt - This involes importing the subpackage pyplot from matplotlib and it is imported and used throughout as plt
+"""
+#Working with matplotlib
+"""
+plt.plot(height,weight) - Used to plot a line graph with the parameters shown.
+The first one in the brackets is the horizontal axis while the second one is the vertical axis.
+
+plt.scatter() - Used to draw a scatter plot plotting only the points and not drawing a line along them.
+
+plt.show() - You must run this in order to show the created graph.
+
+
+plt.xscale('log') - The converts the values that you have in the x axis (horizontal axis) to logarithimic values.
+Line graphs are mostly useful when you have time values in the x axis but in other cases it is more useful and important to use a scatter plot and you can convert the values in the x axis to be exponential(log).
+
 """
