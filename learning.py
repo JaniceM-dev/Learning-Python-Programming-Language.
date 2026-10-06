@@ -504,6 +504,16 @@ In order to determine how the points should appear in the output graph, we use m
 
 3.plt.plot(x, y, 's') - used for square markers only.
 
+4.plt.scatter(x,y, s=[list]) - IT shows that the size oeach plot/point is equal to specific values maybe of another list.This only works in a scatter plot as this is the only one we use points.
+
+5.plt.scatter(x,y, c=col) - c=col shows that the colors of each of the points are to be given based on a seperate list col that is a list with all the colours corresponding to each value in the plot. Should have the same number of values as the values in both the lists forming the x and y axis.
+
+6. plt.scatter(x,y, alpha = 0.8) - Shows the transparency of each dot. When 0 it is almost transparent,when 1 it is fully visible.
+
+7. plt.text(x, y, 'the text') - It is used when you want to label specific points in the grapgh. It mean that you label 'the text' where the value of x is x and the value of y is y.
+For example: plt.text(1550, 71, 'India')
+             plt.text(2500, 80 , 'India')
+8.plt.grid() - It is used to draw gridlines on the graph.
 
 
 plt.scatter() - Used to draw a scatter plot plotting only the points and not drawing a line along them.
@@ -512,7 +522,7 @@ plt.show() - You must run this in order to show the created graph.
 
 plt.show() displays a plot; plt.clf() cleans it up again so you can start afresh with a new histogram.
 
-
+Always call the functions to customize the graph such as to label the axis before you call plt.show().
 plt.xscale() - This sets the scale of the x-axis.
 
 plt.xscale('linear') - The default.
@@ -533,6 +543,11 @@ Mentioning "log scale" tells readers the axis isn't linear.
 (plt.ylabel(...) does the same for the y-axis.)
 plt.title('Scatter Plot') - Gives the graph a title.
 
+plt.yticks() - Used to define the ranges of values in the y axis.For Example:
+
+plt.yticks([0,2,4,6,8,10]) - The y axis has this range of values starting from 0.
+ply.yticks([0,2,4,6,8,10],
+           [0B,2B,4B,68,8B,10B]) - This is used to rename the values above to the values in the second list for example to show that the values are in billions. Ensure that the ranges are the same.              )
 Line graphs are mostly useful when you have time values in the x axis but in other cases it is more useful and important to use a scatter plot and you can convert the values in the x axis to be exponential(log).
 
 
@@ -601,4 +616,7 @@ plt.hist([ages_a, ages_b], bins=6, range=(10, 70),
          edgecolor='black', alpha=0.8)
 plt.legend()
 plt.show()
+
+
+
 """
