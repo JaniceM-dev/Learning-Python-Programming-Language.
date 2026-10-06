@@ -485,7 +485,7 @@ np.random.seed(123) before you run the function np.ramdom.normal().
 """
 It is a python package that is used in data visualization to view data in a more graphical format.
 
-You first begin by installing the Mtplotlib packge by typing:
+You first begin by installing the Matplotlib packge by typing:
 pip3 install matplotlib
 
 NB: matplotlib uses numpys arrays for data visualization hence installing matplotlibs package automaticaly imports numpy if it was not available already.
@@ -497,13 +497,108 @@ But installing numpy package does not mean that the matplotlib package is instal
 """
 plt.plot(height,weight) - Used to plot a line graph with the parameters shown.
 The first one in the brackets is the horizontal axis while the second one is the vertical axis.
+In order to determine how the points should appear in the output graph, we use markers. Examples are:
+1.plt.plot(x, y, 'o-') - The o draws a circle marker around each data point and the '-' means draw a straight line between each data point.
+
+2.plt.plot(x, y, 'r--') - means draw a red dashed line.
+
+3.plt.plot(x, y, 's') - used for square markers only.
+
+
 
 plt.scatter() - Used to draw a scatter plot plotting only the points and not drawing a line along them.
 
 plt.show() - You must run this in order to show the created graph.
 
+plt.show() displays a plot; plt.clf() cleans it up again so you can start afresh with a new histogram.
 
-plt.xscale('log') - The converts the values that you have in the x axis (horizontal axis) to logarithimic values.
+
+plt.xscale() - This sets the scale of the x-axis.
+
+plt.xscale('linear') - The default.
+plt.xscale('log') -  The converts the values that you have in the x axis (horizontal axis) to logarithimic values.For example the ranges span in multiples of 10 ie. 1,10,100,1000,10000,100000.
+plt.xscale('symlog') - Used to do the same as plt.xscale('log') but it handles both negative and positive values correctly.
+plt.xscale('logit') - Values must be strictly between 0 and 1.
+Exactly 0 or 1 gives an infinite logit, and values outside that range are undefined, so those points won't be drawn.
+On a linear axis, 0.001, 0.01 and 0.1 would bunch up near the left edge, and 0.9, 0.99 and 0.999 near the right. On the logit scale, they spread out symmetrically around 0.5, so the points appear evenly spaced.
+
+plt.yscale('log') for the y-axis,
+plt.loglog() for both, 
+and plt.semilogx() / plt.semilogy() as shortcuts for plotting with one log axis.
+
+
+plt.xlabel('log scale') 
+xlabel: adds a text label under the x-axis (log scale).
+Mentioning "log scale" tells readers the axis isn't linear.
+(plt.ylabel(...) does the same for the y-axis.)
+plt.title('Scatter Plot') - Gives the graph a title.
+
 Line graphs are mostly useful when you have time values in the x axis but in other cases it is more useful and important to use a scatter plot and you can convert the values in the x axis to be exponential(log).
 
+
+#HISTOGRAM
+The height of the histogram shows how many datapoints are in a given range.
+
+We use:
+plt.hist()
+Parameters passed in the hist function for the histogram.
+
+In a list passed in a histogram, 
+the y axis = the number of values in the list.
+the x axis = the range of values / the values in the list.
+                                
+1. plt.hist(ages, bins=6)- Shows that the list we are using is the ages list and that we want the values to be divided in  ranges of 6 hence 6 bins.
+If you donot specify this, the histogram will be drawn with bins of 10.
+
+2. plt.hist(ages, bins=6, density=True)  - Density involves calculating a frequency dencity of each height ensuring that the area of each bar is always 1. This ensures that all height are subsidised incase the values have  very large heights.
+
+3.plt.hist(ages, bins=6, weights=none / weights = purchases) - Here purchases is a seperate list that contains the weights of each value eg the amount spent by each customer.
+Here there are two grapgh at each bin, one for the normal count which is the normal values and the other with the weights where eacg value is added with its weight.
+
+4.plt.hist(ages, bins=6, cumulative=True) - Here the frequency is a cummulative frequency where the height of each bin = its height + the heights of all its previous bins.
+
+5.plt.hist([ages_a, ages_b], bins=6) - Used when you are passsing in two datasets. The datasets appear side by side in each bin.
+
+6.plt.hist([ages_a, ages_b], bins=6 stacked=True) - Used when you want the values in the two lists to stack on top of each other in each height. The total height is the sum of the heights of each of the two datasets in each bin.
+
+7.plt.hist(ages, bins=6, range=(20, 50)) - This specifies the range meaning that every value outside the range is not counted.
+
+8.plt.hist(ages, bins=6, histtype='bar') - This shows the type/drawing style of the histogram.
+a) bar - Bars for each bin.
+b) step - Draws an outline at each height level and there are no bars to seperate bins.
+c) stepfilled - It uses step but adds colour to the regions below the line.
+
+9.plt.hist(ages, bins=6, orientation='vertical'/orientation='horizontal') - Defines the orientation of the histogram. Default is horizontal.
+
+10. plt.hist(ages, bins=6, rwidth=None /rwidth=0.5) - Shows the thickness of each bar in the bin. Ranges berween 0 and 1. When it is 1 there are no spaces between bars.
+
+11. plt.hist(ages, bins=6, align='mid'/align='right'/align='left') - Shows how the bars are aligned based on the right or left edges of each bin. Mostly used when rwidth is below 1.
+
+12.plt.hist(ages, bins=6, log=False) - This makes the height axis(y axis) to be logarithimic.
+
+13.plt.hist(ages, bins=6,bottom=None) - This is used to set the height with which each bin starts from,whether it starts from the bottom 0 or from a specific height value above the bottom eg 2.5.
+
+14.plt.hist(ages, bins=6, color='#2a78d6') - This sets the colour of the bargraphs to a specific color.
+
+15.plt.hist(ages, bins=6, label=None/label=['A', 'B']{for two datasets}) - This used to give labels to each axis. In order to display the legends you have to call plt.legend().
+
+16.plt.hist('age', data=df) - This is used when you have data in a table and only want to refer to one column in the table and draw a histogram of it.
+
+17. The symbol  * - Means that every parameter after it must be written with its name, eg data=df not just df.
+
+18. The symbol **kwargs - Means anything else that can be used eg to style the bars as desired.
+
+19. edgecolor='black' - This means that the colours of the edges of each bin/bar are of a specific color.
+
+20.alpha=0.5 - Transparency from 0 to 1.
+
+21.linewidth=2. - Linewidth.
+
+Example: 
+plt.hist([ages_a, ages_b], bins=6, range=(10, 70),
+         histtype='bar', rwidth=0.8, stacked=True,
+         color=['steelblue', 'orange'], label=['A', 'B'],
+         edgecolor='black', alpha=0.8)
+plt.legend()
+plt.show()
 """
