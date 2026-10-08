@@ -617,6 +617,15 @@ plt.hist([ages_a, ages_b], bins=6, range=(10, 70),
 plt.legend()
 plt.show()
 
+"""
+#DICTIONARIES.
+"""
+Dictionaries store values in terms of key value pairs. In order to access a value you jast pass in the key as a parameter.
+Example Syntax:
+dictionary name = {"Key":Value}
+world = {"Kenya":50.6,"Uganda":40.69,"Tanzania":30.34}
+world["Kenya"] = 50.6
 
+world.keys() - It is a method for dictionaries that is used to determine all the keys that are found in the dictionary.
 
 """
