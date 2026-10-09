@@ -625,7 +625,43 @@ Example Syntax:
 dictionary name = {"Key":Value}
 world = {"Kenya":50.6,"Uganda":40.69,"Tanzania":30.34}
 world["Kenya"] = 50.6
-
 world.keys() - It is a method for dictionaries that is used to determine all the keys that are found in the dictionary.
 
+In dictionaries, keys have to be immutable objects. Immutable objects are objects whose values cannot be changed after they have been created
+Examples of immutable objects are datatypes of string,integer,float and boolean. All these are acceptable as keys.
+However,a list is not acceptable as its value can change after it is created. It is muttable.
+
+world = {0:30,"Kenya":50.6,True:70,30.5:40.9} - These are all acceptable.
+world = {["Janice",20,159]:30} - Not acceptable as the value of a list can be changed once created.
+
+#Adding values in a dictionary.
+In order to add values in a dictionary, you follow the same syntax as if you are searching for a key but instead you assighn it a value.
+
+example: world ["Malawi"] = 57.90
+world =  {"Kenya":50.6,"Uganda":40.69,"Tanzania":30.34,"Malawi":57.90}
+
+#Searching for a key in a dict
+To identify whether a key is in a dictionary: key in dictionary
+For Example: "Malawi" in world.
+
+#Updating a value in a dict.
+Use the same syntax as for adding as python knows that that key already exists and that you are not trying to create another one. Every key is unique.
+world["Kenya"] = 55.4
+world =  {"Kenya":55.4,"Uganda":40.69,"Tanzania":30.34,"Malawi":57.90}
+
+#deleting a key and its value in a dictionary
+we use the del() function which is the same as in lists but here we specify only the key and the value is automatically deleted.
+del(world["Malawi])
+
+#Lists vs Dictionaries.
+You can use lists when you need to acces large subsets of data.
+Whereas you can use dictionaries when you need to search for data faster and where the data can be accesed by a unique key.
+
+One can also create a dictionary where the corressponding values are also dictionaries.
+Example:
+world2 = {"Kenya":{"Capital":"Nairobi","Population":40.56},"Tanzania":{"Capital":"Da-el-salaam","Population":80.59}}
+To access the capital city of tanzania.
+world['Tanzania']['Capital']
+
 """
+
