@@ -366,7 +366,7 @@ Are arrays with more than one dimention eg, 3 sublists in one list. 3D array.
 A 2-dimensional array doesn't mean "2 rows" or "2 columns." The "2" refers to the number of indices you need to locate one element. You need two numbers: one for the row and one for the column.
 A 2D array can have any number of rows and any number of columns.
 3D array: three indices, like a stack of tables: arr[layer][row][col].
-They can be created from a list that is made ip of two sublists or more. 
+They can be created from a list that is made up of two sublists or more. 
 Example: 
 height = [6.14,4.50,5.50,6.20]
 weight = [64.50,65.30,55.70,54.40]
@@ -391,13 +391,13 @@ in numpy attributes : nd_2d.shape - no brackets.
 For a  multi dimentional array with more than one row.
 numpy.arrayname[row,column] eg: np_4d[3,5] - Row 3 column 5
 
-NB:The concept of using commas for slicing is only understood in the numpy arrays and not in a normal list. In normal lists it will throw an error hence we only use colons ads they cn only be accesed in one dimention.
+NB:The concept of using commas for slicing is only understood in the numpy arrays and not in a normal list. In normal lists it will throw an error hence we only use colons as they can only be accesed in one dimention.
  example: baseball[0][1:5] - The first row and column 1 to 4 not 5.
 So always make sure that when indexing using commas you are working on a numpy array and not on a normal list.  
 
 #OPERATIONS ON 2D ARRAYS.
 Addition: You can add a 2d array with another 2D arrays so that the addition takes place indexwise.
-Multiplication: In order to multiply values in a 2D,you create another array with the same number of columns or the same number , with the values that you want to multiply each column with.
+Multiplication: In order to multiply values in a 2D,you create another array with the same number of columns or the same number , with the values that you want to multiply each row with.
 Example:
 height = [6.14,4.50,5.50,6.20]
 weight = [64.50,65.30,55.70,54.40]
@@ -512,7 +512,7 @@ In order to determine how the points should appear in the output graph, we use m
 
 7. plt.text(x, y, 'the text') - It is used when you want to label specific points in the grapgh. It mean that you label 'the text' where the value of x is x and the value of y is y.
 For example: plt.text(1550, 71, 'India')
-             plt.text(2500, 80 , 'India')
+             plt.text(2500, 80 , 'China')
 8.plt.grid() - It is used to draw gridlines on the graph.
 
 
@@ -583,13 +583,13 @@ a) bar - Bars for each bin.
 b) step - Draws an outline at each height level and there are no bars to seperate bins.
 c) stepfilled - It uses step but adds colour to the regions below the line.
 
-9.plt.hist(ages, bins=6, orientation='vertical'/orientation='horizontal') - Defines the orientation of the histogram. Default is horizontal.
+9.plt.hist(ages, bins=6, orientation='vertical'/orientation='horizontal') - Defines the orientation of the histogram. Default is vertical.
 
 10. plt.hist(ages, bins=6, rwidth=None /rwidth=0.5) - Shows the thickness of each bar in the bin. Ranges berween 0 and 1. When it is 1 there are no spaces between bars.
 
 11. plt.hist(ages, bins=6, align='mid'/align='right'/align='left') - Shows how the bars are aligned based on the right or left edges of each bin. Mostly used when rwidth is below 1.
 
-12.plt.hist(ages, bins=6, log=False) - This makes the height axis(y axis) to be logarithimic.
+12.plt.hist(ages, bins=6, log=True) - This makes the height axis(y axis) to be logarithimic.
 
 13.plt.hist(ages, bins=6,bottom=None) - This is used to set the height with which each bin starts from,whether it starts from the bottom 0 or from a specific height value above the bottom eg 2.5.
 
@@ -607,7 +607,7 @@ c) stepfilled - It uses step but adds colour to the regions below the line.
 
 20.alpha=0.5 - Transparency from 0 to 1.
 
-21.linewidth=2. - Linewidth.
+21.linewidth=2. - Linewidth of each edge bar.
 
 Example: 
 plt.hist([ages_a, ages_b], bins=6, range=(10, 70),
@@ -620,7 +620,7 @@ plt.show()
 """
 #DICTIONARIES.
 """
-Dictionaries store values in terms of key value pairs. In order to access a value you jast pass in the key as a parameter.
+Dictionaries store values in terms of key value pairs. In order to access a value you just pass in the key as a parameter.
 Example Syntax:
 dictionary name = {"Key":Value}
 world = {"Kenya":50.6,"Uganda":40.69,"Tanzania":30.34}
@@ -651,10 +651,10 @@ world =  {"Kenya":55.4,"Uganda":40.69,"Tanzania":30.34,"Malawi":57.90}
 
 #deleting a key and its value in a dictionary
 we use the del() function which is the same as in lists but here we specify only the key and the value is automatically deleted.
-del(world["Malawi])
+del(world["Malawi"])
 
 #Lists vs Dictionaries.
-You can use lists when you need to acces large subsets of data.
+You can use lists when you need to access large subsets of data.
 Whereas you can use dictionaries when you need to search for data faster and where the data can be accesed by a unique key.
 
 One can also create a dictionary where the corressponding values are also dictionaries.
@@ -662,6 +662,64 @@ Example:
 world2 = {"Kenya":{"Capital":"Nairobi","Population":40.56},"Tanzania":{"Capital":"Da-el-salaam","Population":80.59}}
 To access the capital city of tanzania.
 world['Tanzania']['Capital']
+
+"""
+#PANDAS 
+"""
+PANDAS is a high level data manipulation tool that is used to manupulate data.
+It was created by Wes Mkinney and is built on the numpy package.
+It is more advanced than numpy.
+
+In order to use it, one must first install it using pip3 install pandas
+Then to import it in a file you use :
+import pandas as pd
+
+NB: python -c "import pandas; print(pandas.__version__)"
+python - Runs the python interpreter
+-c this tells python that we are running a command that we want it to execute otherwise it will expect a file to run.
+"import pandas; print(pandas.__version__)" - The command we want it to run.
+import pandas - Checks whether pandas has been installed otherwise it shows an error.
+; - The semicolon shows that we are writting two seperate statements in one line.
+print(pandas.__version__) - Prints pandas version if it exists. The underscores are part of the name. __version__ .
+
+In certain conditions one may require to manipulate data in a table but it becomes difficult to use numpys 2D arrays when the data has different datatypes.
+Here is where we use the pandas package specifically pandas dataframe to store values in a table.
+In a table, The rows represent the data while the columns represent the variables.
+
+
+#BUILDING DATAFRAMES
+There are several ways to create and use dataframes.
+1. Creating them manually using a dictionary.
+This approach is not convenient expecially when you have large sets of data.
+
+In order to build a a dataframe to accomodate the values of a table,you can start by using a dictionary.
+Where the keys are the column labels while the values are a list of value /observations of each column.
+
+For Example
+
+dict = {
+"Country":["Kenya","Uganda","Tanzania","Zimbambwe","Malawi"],
+"Capital":["Nairobi","Kampala","Da-el-Salaam","Harare","Lilongwe"],
+"Population":[40.56,50.79,70.46,44.39,56.54],
+"Area":[11.54,18.39,7.90,5.78,3.59]
+}
+
+dataTable = pd.DataFrame(dict) -{DataFrame in sentence case} This creates a dataframe which is a table taking in the values from the dictionary.
+.index - This is a dataframe attribute that is used to assign special names to each record thus preventing them from being aotoincreamented per record.
+It may be an attribite but we are assigning index values to each record ie row in the table. Hence we use an equal sign.
+We assign a list of values for each row. The number of values in the list should be equal to the number of values/ records or rows in the table.
+example : dataframename.index = [list of names]
+dataTable.index = ["KE","UG","TZ","ZM","ML"] -
+
+2.Importing Data from a csv file.
+CSV means comma seperated values.
+In order to import this data and view it as a dataframe you use the command:
+data = pd.read_csv(path to the csv file)
+.read_csv - This is an function to read a csv file.
+There are so many parameters you can pass inside it to manipulate how your data is imported from the csv file. You can read the documentation.
+1.data = pd.read_csv(path to the csv file,index.col = 0) - You set this when the imported table already has row labels but pandas still gives each row a new index.This parameter sets the index column to 0 so none.
+
+
 
 """
 

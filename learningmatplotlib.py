@@ -53,7 +53,7 @@ for x,y,name in zip(year,populations,countries):
 #This is a loop that has been used to name the countries instead of naming them manually. Can only be used if the lists are similar and corresponding indexwise.
 
 plt.grid(True)
-plt.show()
+#plt.show()
 
 
 #plt.scatter(year,populations)
@@ -70,3 +70,14 @@ plt.hist([populations,numbers],bins=4,label=['Histogram of Population 2','Histog
 plt.legend()
 plt.show()
 """
+
+#DICTIONARIES
+world = {"Kenya":50.6,"Uganda":40.69,"Tanzania":30.34}
+print(world.keys())
+print(world['Kenya'])
+world['Tanzania'] = 40.50
+print(world['Tanzania'])
+world['Malawi'] = 60.50
+print(world)
+del(world['Malawi'])
+print(world)
