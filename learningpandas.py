@@ -13,3 +13,8 @@ dataTable = pd.DataFrame(dict)
 dataTable.index = ["KE","UG","TZ","ZM","ML"]
 print(dataTable)
 
+csvData = pd.read_csv('assets\csvFiles\sample-sales.csv' , index_col= None, parse_dates = ['date'] , dtype= {'order_id':str},nrows = 10 )
+
+print(csvData)
+csvData.info()
+

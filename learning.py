@@ -705,7 +705,7 @@ dict = {
 }
 
 dataTable = pd.DataFrame(dict) -{DataFrame in sentence case} This creates a dataframe which is a table taking in the values from the dictionary.
-.index - This is a dataframe attribute that is used to assign special names to each record thus preventing them from being aotoincreamented per record.
+.index - This is a dataframe attribute that is used to assign special names to each record thus preventing them from being autoincreamented per record.
 It may be an attribite but we are assigning index values to each record ie row in the table. Hence we use an equal sign.
 We assign a list of values for each row. The number of values in the list should be equal to the number of values/ records or rows in the table.
 example : dataframename.index = [list of names]
@@ -719,7 +719,83 @@ data = pd.read_csv(path to the csv file)
 There are so many parameters you can pass inside it to manipulate how your data is imported from the csv file. You can read the documentation.
 1.data = pd.read_csv(path to the csv file,index.col = 0) - You set this when the imported table already has row labels but pandas still gives each row a new index.This parameter sets the index column to 0 so none.
 
+Parameters 
+a.Telling Pandas how the file is laid out
+1.data = pd.read_csv(path to the csv file,sep = ';' or sep = '\t' (Tab Seperated) or sep = '|' ) - this is used to tell pandas how the file is laid out and the character that seperates the values.
+We use this when the values are not seperated by commas.
 
+2. pd.read_csv('data.csv', header=None) - Header is used to show which row holds the column names. Default header = 0(The first row.). 
+Else when header = none, pandas gives default columun names of 0, 1 ,2 ...
+
+3.pd.read_csv('data.csv', header=None , names = ['country','life_exp','population'] - This is paired with header = none and is used to allow you give the columns your own column names.
+
+4.pd.read_csv('data.csv', encoding='latin-1') - Encoding is used to fix garbled characters.It is used when you see strange symbols or an error.
+
+b. Choosing which data to load.
+5. pd.read_csv('data.csv', usecols=['country','gdp']) - This is used when you want to selects specific columns to use.
+
+6. pd.read_csv('data.csv', nrows=100) - nrows is used to load specific number of rows. Useful when peeking a large dataset.
+
+7.pd.read_csv('data.csv', skiprows=3 (skips the first three rows.)/skiprows = [1,2] (This skips specific lines 1 and 2)) - Used to skip rows at the start or specific rows.
+. Useful when the file has title lines or notes above the real table.
+
+8. pd.read_csv('data.csv', skipfooter = 2 engine = 'python') - skipfooter is used to skip rows at the bottom such as total or notes lines. It requires engine = 'python' .
+
+9. pd.read_csv('data.csv', index_col='country') - This determines which column forms the row labels, if none, you can provise your own which is tedious for a large dataset and reqiores index_col = 0.
+
+c. Contrling Datatypes.
+
+10. pd.read_csv('data.csv', dtype={'zip_code': str, 'age': 'int32'}) - Dtype : forces columns to be read as a specific type. This matters for things like ZIP codes
+or IDs, where 00123 would otherwise lose its leading zeros by becoming the number 123. 
+
+11. pd.read_csv('data.csv', parse_dates=['order_date'], dayfirst=True) -  converts text like 2026-10-10 into real date objects, so you can sort by time or extract months and years.
+dayfirst=True - This is used when you want to sort the dates by day first.
+
+12.d.read_csv('data.csv', thousands=',') - thousands and decimal: handle numbers formatted differently from the default. 1,200,000 can be read as a number.
+pd.read_csv('data.csv', decimal=',', sep=';') - In european style, 3,14 can be read as 3.14 .
+
+13.pd.read_csv('data.csv', converters={'price': lambda s: float(s.replace('$',''))}) - Converters helps one apply their own function to a column for example stripping a % sign etc. 
+'price': lambda s: float(s.replace('%','')) :
+'price' - This is the exact column name whose values you want to change.
+lambda s: float(s.replace('$','')) - This shows the function you want to call on each column.
+lambda s - This is a one line function used without a name and it used for short rules and def for longer ones.
+float(s.replace('%','')) - This removes the % character and replaces it with nothing and converts the data to a float. This is useful for data that you want to convert to float for calculations.
+
+You can also use:
+converters = {'column_name': some_function}
+converters = {'discount': clean_percent} - You write the function without the brackets after. Then you define the function elsewhere.
+
+def clean_percent(s):
+    return float(s.replace('%',''))
+  
+This does the same thing as the lamda's one line function.
+This is very slow for large data, hence it is more advisable to load the data first and then clean it with column wide tools such as:
+df['price'].str.replace('$', '', regex=False).astype(float).
+
+
+d.Handling Missing Data.
+14. pd.read_csv('data.csv', na_values=['N/A', '-', 'missing']) - na_values tells pandas which strings should count as missing data. In several messy files, null data is given entries such as N/A , - or missing . 
+
+15. pd.read_csv('data.csv', comment='#') - comment ignores everything after a chosen character in a line. Useful for files with notes. 
+
+16. pd.read_csv('data.csv', on_bad_lines='skip') - on_bad_lines: decides what to do with broken rows, for example a row with too many columns. The default raises an error. You can skip them instead.
+
+5.Working with Large files.
+for chunk in pd.read_csv('huge.csv', chunksize=100_000):
+print(chunk.shape)       
+# process each 100,000-row piece
+
+chunksize: reads the file in pieces instead of all at once, so a file bigger than your memory can still be processed. It returns an iterator you loop over.
+Combining usecols , dtype and nrows is also a good way to keep large files manageable.
+
+f. Where the file comes from.
+The first input does not have to be a file on your computer.
+pd.read_csv('https://example.com/data.csv')   # straight from a web link
+pd.read_csv('data.csv.gz')                    # compressed files work too
+
+After importing, check the result with: 
+df.head() (first 5 rows) and 
+df.info() (column names, types and missing counts). This is the quickest way to see whether your parameters did what you intended.
 
 """
 
