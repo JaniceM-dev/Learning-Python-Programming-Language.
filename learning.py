@@ -797,5 +797,101 @@ After importing, check the result with:
 df.head() (first 5 rows) and 
 df.info() (column names, types and missing counts). This is the quickest way to see whether your parameters did what you intended.
 
+dict = {
+"Country":["Kenya","Uganda","Tanzania","Zimbambwe","Malawi"],
+"Capital":["Nairobi","Kampala","Da-el-Salaam","Harare","Lilongwe"],
+"Population":[40.56,50.79,70.46,44.39,56.54],
+"Area":[11.54,18.39,7.90,5.78,3.59]
+}
+dataTable = pd.DataFrame(dict)
+
+#SELCTING AND INDEXING DATA IN A DATAFRAME.
+1. Selecting data in a specific column.
+1. dataframename ['The column whose data you want to output.']
+dataTable ['Country'] - If you look at the type of the output data, you will find that it is a series.
+type(dataTable ['Country']) - Output: <class 'pandas.Series'>
+A series is like a 1 dimentional array that can be labbeled. Many series make up a dataframe.
+Inorder to ensure that the data in that column is output as a dataframe, we use two square brackets.
+dataTable [['Country']] 
+type(dataTable [['Country']]) - Output : <class 'pandas.DataFrame'>
+To select more that one column : dataTable[['Country','Capital']]
+Plain square brackets can pick columns, or they can pick rows, but one pair of brackets can't pick both at once.
+
+2. Selecting specific rows. Here we use index slicing.
+You can only access rows by slicing and not giving one index as square brackets are only used to acces columns by their labels.
+#print(dataTable[[0]]) - This does not work as in order to access a row, you can only use slicing and one bracket.
+print(dataTable[0:1]) - Correct.
+
+dataTable[1:4] - This selects rows 1, 2,3 but not 4. It also selects the column lables row.
+NB: Donot use double brackets when handling rows, instead use single brackets since the output is already a dataframe.
+ When using normal brackers to acces values, There is no specific order, but you cannot access rows using labels, only indexes .Label are for columns only.
+
+ #LOC FUNCTION
+ .loc is a pandas function that is used to select items and to slice pandas dataframe based on labels.
+When you use it,it is similar to subsetting 2d numpy arrays.
+Here rows are accesed by labels and not indexes.
+Rows are accesed with labels only in loc NOT using brackets only..
+
+ For Example:
+dataTable.loc['KE'] 
+Output :
+Country         Kenya
+Capital       Nairobi
+Population      40.56
+Area            11.54
+Name: KE, dtype: object
+
+Using double brackets makes it a dataframe, in form of a table:
+print(dataTable.loc[['KE']])
+Output:
+ Country  Capital  Population   Area
+KE   Kenya  Nairobi       40.56  11.54
+
+Selecting more than one row:
+dataTable.loc [['KE','UG']] - Use double square brackes for a dataframe.
+
+In order to slect specific rows and specific columns,the syntax is
+dataTable.loc[[list of row labels],[list of columns]]
+dataTable [['KE','UK','UG'],['Country','Capital']] - Selects only those specific rows and columns.
+dataTable [:,['Country','Capital']] - You use the colon when you want to select all the rows but specific columns.
+You only select the rows when you want to display all the columns as done in the first example.
+
+
+#ILOC FUNCTION
+.iloc - This is a pandas function that is used to select rows and columns based on indexes.
+For example: 
+dataTable.iloc [[row indexes],[column indexes]]
+dataTable.iloc [[0,1]]
+Output:
+Country  Capital  Population   Area
+KE   Kenya  Nairobi       40.56  11.54
+UG  Uganda  Kampala       50.79  18.39
+
+Selecting specific rows and columns.
+print(dataTable.iloc [[0,1],[0,1]])
+  Country  Capital
+KE   Kenya  Nairobi
+UG  Uganda  Kampala
+
+
+To select all rows and specific columns,we use:
+dataTable.iloc [:[0,1]]
+Output:
+ Country       Capital
+KE      Kenya       Nairobi
+UG     Uganda       Kampala
+TZ   Tanzania  Da-el-Salaam
+ZM  Zimbambwe        Harare
+ML     Malawi      Lilongwe
+
+NB: #print(dataTable.loc[['Country']]) - This is wrong.
+When you use loc and iloc, the strict format is row values/indexes and then columns.
+You cannot give a column label in the place of a row.
+It is only in iloc where we use indexes with double brackets, we donot do that in normal indexing.
+
+#print(dataTable[[0]]) - This does not work as in order to access a row, you can only use slicing and one pair of square brackets.
+#print(dataTable[0:1]) - Correct
+# print(dataTable [['UG']] ) - You cannot use an index to access a row if you are not using the loc function.
+
 """
 
