@@ -99,3 +99,9 @@ print("Std of Weight of Random data 2A:" + str(round(np.std(np_total2dA[:,1]),2)
 
 
 print("Correlation coeeficient of data 2A:" + str(np.corrcoef(np_total2dA[:,0],np_total2dA[:,1])))
+
+print(bmi>4)
+print(np.logical_and(bmi>4,bmi<3))
+print(np.logical_or(bmi>4,bmi<1))
+print(np.logical_not(bmi>4))
+print(bmi[np.logical_not(bmi>4)])

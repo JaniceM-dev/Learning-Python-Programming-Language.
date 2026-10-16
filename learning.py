@@ -894,4 +894,60 @@ It is only in iloc where we use indexes with double brackets, we donot do that i
 # print(dataTable [['UG']] ) - You cannot use an index to access a row if you are not using the loc function.
 
 """
+#COMPARISON OPERATORES
+"""
+Comparison only happens between values or objects of the same datatype. You cannot compare a string and an integer.
+Float and int works.
+int and numpy array with integer values works.
 
+Comparison Operators.
+> - Greater Than
+< - Less Than
+<= - Less than or equal to.
+>= - Greate than or equal to.
+!= - Not equal to
+
+Comparison in strings compares character by character starting with the first one in their alphabetical order.
+#BOOLEAN OPERATORS AND OR NOT
+AND - True if both are true
+OR - True if either are true
+NOT - Negates the current result.
+This does not work for numpy arrays. 
+The equivalents for this are numpy functions:
+
+1.np.logical_and()
+2.np.logical_or()
+3.np.logical_not()
+
+Example: 
+height = [6.14,4.50,5.50,6.20])
+weight = [64.50,65.30,55.70,54.40])
+
+np_weight = np.array(weight)
+np_height = np.array(height)
+
+bmi = np_weight/np_height**2
+Example 1:
+bm1 > 2 and bmi < 3 - This produces an error
+
+Example 2:
+print(bmi>4)
+Output:[False False False False]
+
+Example 3:
+print(np.logical_and(bmi>4,bmi<3))
+Output: [False False False False]
+
+Example4:
+print(np.logical_or(bmi>4,bmi<1))
+Output: [False False False False]
+
+Example 5:
+print(np.logical_not(bmi>4))
+Output: [ True  True  True  True]
+
+To output the values that have met that criteria, we pass the function inside square brackets.
+print(bmi[np.logical_not(bmi>4)])
+Output: [1.71089348 3.22469136 1.84132231 1.41519251]
+
+"""
