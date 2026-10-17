@@ -806,6 +806,7 @@ dict = {
 dataTable = pd.DataFrame(dict)
 
 #SELCTING AND INDEXING DATA IN A DATAFRAME.
+
 1. Selecting data in a specific column.
 1. dataframename ['The column whose data you want to output.']
 dataTable ['Country'] - If you look at the type of the output data, you will find that it is a series.
@@ -815,6 +816,7 @@ Inorder to ensure that the data in that column is output as a dataframe, we use 
 dataTable [['Country']] 
 type(dataTable [['Country']]) - Output : <class 'pandas.DataFrame'>
 To select more that one column : dataTable[['Country','Capital']]
+NB: You can only select one column using this method as a series with one bracket pair. In order to select more than one column you select them as a dataframe with two bracket pairs. 
 Plain square brackets can pick columns, or they can pick rows, but one pair of brackets can't pick both at once.
 
 2. Selecting specific rows. Here we use index slicing.
@@ -949,5 +951,106 @@ Output: [ True  True  True  True]
 To output the values that have met that criteria, we pass the function inside square brackets.
 print(bmi[np.logical_not(bmi>4)])
 Output: [1.71089348 3.22469136 1.84132231 1.41519251]
+
+"""
+#CONTROL STRUCTURES
+"""
+Syntax:
+if condtion:
+  expression
+
+There is a semicolon after the condition. If the condition is true the statement is executed  else it is not.
+Ensure that there is a tab/4spaces under the if condition to show that all the statements underneath it are under the if condition and are only executed if the statement is true.
+
+Overall Syntax:
+if condtion:
+  statement
+elif condition:
+  statement
+else:
+  statement
+
+To get out of the loop,you simply ensure that the next statement does not have a tab or space before it.
+"""
+
+#Subsetting Pandas Dataframes.
+"""
+Inorder to subset pandas dataframes, for exampke to get only values that have met a specific criteria, we use:
+1.Get the column whose values you want to filter.
+2.Carry out the condition, mening filter the values that have met the condition and store it in a variable.
+3.Use those values as the index/input in square brackets of the whole data frame.
+NB:In all these we use single brackets since we are working on a series not a dataframe in manipulation.
+For Example:
+
+dict = {
+"Country":["Kenya","Uganda","Tanzania","Zimbambwe","Malawi"],
+"Capital":["Nairobi","Kampala","Da-el-Salaam","Harare","Lilongwe"],
+"Population":[40.56,50.79,70.46,44.39,56.54],
+"Area":[11.54,18.39,7.90,5.78,3.59]
+}
+
+dataTable = pd.DataFrame(dict)
+
+we want to see only the rows whose population is greater than 45.
+Step 1:
+dataTable['Population'] 
+Output:
+KE    40.56
+UG    50.79
+TZ    70.46
+ZM    44.39
+ML    56.54
+Step 2:
+filteredData = dataTable['Population'] > 45
+Output:
+KE    False
+UG     True
+TZ     True
+ZM    False
+ML     True
+Name: Population, dtype: bool
+Step 3:
+dataTable[filteredData]
+Output:
+ Country       Capital  Population   Area
+UG    Uganda       Kampala       50.79  18.39
+TZ  Tanzania  Da-el-Salaam       70.46   7.90
+ML    Malawi      Lilongwe       56.54   3.59
+
+This has the same output as: 
+dataTable[dataTable['Population'] > 45]
+
+#Using The boolean Conditions,and or not.
+We want to find values with a population greater than 45 and an area greater than 10.
+Here we use the three functions:
+np.logical_and()
+np.logical_or()
+np.logical_not()
+Since pandas is an extension of numpy.
+Step 1:
+dataTable[['Population','Area']]
+Output:
+ Population   Area
+KE       40.56  11.54
+UG       50.79  18.39
+TZ       70.46   7.90
+ZM       44.39   5.78
+ML       56.54   3.59
+Step 2:
+filteredData2 = np.logical_and(dataTable['Population'] > 45,dataTable['Area'] > 10)
+Output:
+KE    False
+UG     True
+TZ    False
+ZM    False
+ML    False
+Step 3:
+dataTable[filteredData2]
+Output:
+ Country  Capital  Population   Area
+UG  Uganda  Kampala       50.79  18.39
+
+This produces the same output as:
+dataTable[np.logical_and(dataTable['Population'] > 45,dataTable['Area'] > 10)]
 
 """

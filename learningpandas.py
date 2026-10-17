@@ -39,3 +39,13 @@ csvData = pd.read_csv('assets\csvFiles\sample-sales.csv' , index_col= None, pars
 #print(csvData)
 #csvData.info()
 
+print(dataTable['Population'] )
+filteredData = dataTable['Population'] > 45
+print(filteredData)
+print(dataTable[filteredData])
+
+print(dataTable[['Population','Area']])
+filteredData2 = np.logical_and(dataTable['Population'] > 45,dataTable['Area'] > 10)
+print(filteredData2)
+print(dataTable[filteredData2])
+print(dataTable[np.logical_and(dataTable['Population'] > 45,dataTable['Area'] > 10)])
