@@ -1054,3 +1054,31 @@ This produces the same output as:
 dataTable[np.logical_and(dataTable['Population'] > 45,dataTable['Area'] > 10)]
 
 """
+#WHILE LOOP
+"""
+The while loop is used when you want to run a commuand a specific number of times until a given condition is met.
+Syntax:
+while condition:
+  expression.
+
+eg 
+while x > 4
+  x - x / 2
+  print x
+  
+The condition has to be met at some point otherwise the loop will run forever.
+That is why in the program above, the value of x has to be increamented.
+
+You can use an if statement inside the while loop to make sure that the condition will always be met.
+
+eg:
+x = -2
+while x != 0:
+  if x > 0:
+    x = x - 1
+  else:
+    x = x + 1
+  print(x)
+
+This loop ends when the condition is met, else it will never end.
+"""

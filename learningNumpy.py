@@ -105,3 +105,19 @@ print(np.logical_and(bmi>4,bmi<3))
 print(np.logical_or(bmi>4,bmi<1))
 print(np.logical_not(bmi>4))
 print(bmi[np.logical_not(bmi>4)])
+
+#WHILE LOOP
+
+x = 16
+
+while x > 4:
+  x = x / 2
+  print (x)
+
+x = -2
+while x != 0:
+  if x > 0:
+    x = x - 1
+  else:
+    x = x + 1
+  print(x)
