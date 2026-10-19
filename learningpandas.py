@@ -49,3 +49,8 @@ filteredData2 = np.logical_and(dataTable['Population'] > 45,dataTable['Area'] > 
 print(filteredData2)
 print(dataTable[filteredData2])
 print(dataTable[np.logical_and(dataTable['Population'] > 45,dataTable['Area'] > 10)])
+
+for i,country in enumerate(dataTable["Country"]):
+    print(i,country)
+
+#print(dataTable.iterrows(dataTable[["Country"]]))

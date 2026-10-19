@@ -81,3 +81,11 @@ world['Malawi'] = 60.50
 print(world)
 del(world['Malawi'])
 print(world)
+
+
+plt.scatter(year,populations)
+
+for i , country in enumerate(countries):
+    plt.text(year[i],populations[i],country)
+
+plt.show()

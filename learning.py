@@ -1114,10 +1114,143 @@ Output:
 2. You can also use the enumerate() function which is used when you want to print out the index of each value.
 it is a built-in Python function that lets you loop through a list and get each item's position (index) along with the item itself, in one go.
 For Example:
-for i , h in enumerate(height)
+for i , h in enumerate(height):
   print(i,h)
 Here i and h are just variables where i is used to represent the index of each value and h is used to represent the actual values in the list.
 
+To make it cleaner, you can make the print statement better. For Example:
+for i ,h in enumerate(height):
+  print("Height" + " " + str(i) + ":" +  str(h))
 
+The space makes sure that there is a space between values height and the index.
+
+#Starting index 1
+You can make the string start at index one for example:
+for i , h in enumerate(height , start = 1): #Ensure tha the comma is there.
+   print("Height" + " " + str(i) + ":" +  str(h))
+
+output:
+Height 1:6.14
+Height 2:4.5
+Height 3:5.5
+Height 4:6.2
+
+#Other ways of getting the index without enumerate.
+1:
+i = 0
+for h in height:
+    print(i,h)
+    i = i + 1
+Output:
+0 6.14
+1 4.5
+2 5.5
+3 6.2
+2: 
+for i in range(len(height)):
+    print(i,height[i])
+
+Output:
+0 6.14
+1 4.5
+2 5.5
+3 6.2
+
+len(height) counts how many items are in the list. Here it returns 3.
+range(3) produces the numbers 0, 1, 2. It starts at 0 and stops before 3. These are exactly the valid positions (indexes) in a 3-item list.
+using enumerate avoids the use of the functions len() and range().
+
+#USING ZIP.
+One uses the zip function when you want to extract values from two lists of the same length one by one side by side.
+For Example:
+height = [6.14,4.50,5.50,6.20]
+weight = [64.50,65.30,55.70,54.40]
+
+for i , h in zip(height,weight):
+    print(i,h)
+
+Output:
+6.14 64.5
+4.5 65.3
+5.5 55.7
+6.2 54.4
+
+You can use both enumerate and zip when you want to extract the values in two different lists and give them index values.
+For Example:
+for i, (h,w) in enumerate(zip(height,weight)): # Always put the variables representing the values in the zip in brackets.
+    print(i,h,w)
+Output:
+0 6.14 64.5
+1 4.5 65.3
+2 5.5 55.7
+3 6.2 54.4
+
+
+#Looping through Characters.
+The for loop can also be used when looping through each character in a string.
+for i in "family":
+    print(i.capitalize())
+
+Output:
+F
+A
+M
+I
+L
+Y
+
+ You can also use a for loop to loop through in data science, when using matplotlib's plt.text()
+ to give names at specific points in the graph.
+ For Example:
+ year = [2009,2010,2011,2012,2013]
+ populations = [40,43,45,48,60]
+ countries = ['Kenya','India','Uganda','Tanzania','Angola']
+
+ plt.scatter(year,populations)
+ for i , country in enumerate(countries):
+    plt.text(year[i],populations[i],country)
+
+  plt.show()
+
+#Using for loop in pandas.
+for i,country in enumerate(dataTable['Country']):
+    print(i,country)
+This prints out every value in each row of the column "country" in the dataframe.
+You can also use the function df.iterrows() to give each row together with its index in a dataframe.
+
+Output:
+0 Kenya
+1 Uganda
+2 Tanzania
+3 Zimbambwe
+4 Malawi
+
+for i,country in enumerate(dataTable[['Country']]):
+    print(i,country)
+Output:
+0 country.
+This is because looping through a dataframe gives you the column label and its index not its values.
+Hence we use one pair of brackets as looping through a series gives you the actual values in the column as well as their indexes.
+
+#Using a for loop to access a list of lists.
+
+house = [["hallway", 11.25], 
+         ["kitchen", 18.0], 
+         ["living room", 20.0], 
+         ["bedroom", 10.75], 
+         ["bathroom", 9.50]]
+Since house is a variable with sub lists, in each iteration, it looks at the value in each sublist where each value is given a variable and prints it out.
+
+for x, y in house:
+    print("the" + " " + str(x) + " " + "is" + " " + str(y) + " " + "sqm")
+
+x is the variable for the first value in each sublist while y is the variable for the second value in each sublist. In this case it is the areas list.
+
+Output:
+the hallway is 11.25 sqm
+the kitchen is 18.0 sqm
+the living room is 20.0 sqm
+the bedroom is 10.75 sqm
+the bathroom is 9.5 sqm
 
 """

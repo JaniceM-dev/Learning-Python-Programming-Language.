@@ -125,3 +125,32 @@ while x != 0:
 #The for loop
 for h in height:
   print (h)
+
+#using the enumerate function.
+for i , h in enumerate(height):
+  print(i,h)
+
+#start = 1
+for i , h in enumerate(height , start = 1): #Ensure tha the comma is there.
+   print("Height" + " " + str(i) + ":" +  str(h))
+
+#Looping without enumerate()
+i = 0
+for h in height:
+    print(i,h)
+    i = i + 1
+#Looping without enumerate()2
+
+for i in range(len(height)):
+    print(i,height[i])
+#using zip
+for i ,h in zip(height,weight):
+    print(i,h)
+
+#using zip and enumerate.
+for i, (h,w) in enumerate(zip(height,weight)): # Always put the variables representing the values in the zip in brackets.
+    print(i,h,w)
+
+#looping Characters.
+for i in "family":
+    print(i.capitalize())
