@@ -121,3 +121,7 @@ while x != 0:
   else:
     x = x + 1
   print(x)
+
+#The for loop
+for h in height:
+  print (h)

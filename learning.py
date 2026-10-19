@@ -1054,6 +1054,7 @@ This produces the same output as:
 dataTable[np.logical_and(dataTable['Population'] > 45,dataTable['Area'] > 10)]
 
 """
+
 #WHILE LOOP
 """
 The while loop is used when you want to run a commuand a specific number of times until a given condition is met.
@@ -1065,7 +1066,11 @@ eg
 while x > 4
   x - x / 2
   print x
-  
+
+Output:
+8.0
+4.0
+
 The condition has to be met at some point otherwise the loop will run forever.
 That is why in the program above, the value of x has to be increamented.
 
@@ -1080,5 +1085,39 @@ while x != 0:
     x = x + 1
   print(x)
 
+Output:
+-1
+0
 This loop ends when the condition is met, else it will never end.
+The while loops above manipulates the value of x before printing it.
+"""
+
+# THE FOR LOOP
+"""
+In the for loop,it is used to iterate between each value in a python object.
+
+Syntax:
+for variable in expression:
+  print(variable)
+
+For example:
+height = [6.14,4.50,5.50,6.20]
+for h in height:
+  print (h)
+
+Output:
+6.14
+4.5
+5.5
+6.2
+
+2. You can also use the enumerate() function which is used when you want to print out the index of each value.
+it is a built-in Python function that lets you loop through a list and get each item's position (index) along with the item itself, in one go.
+For Example:
+for i , h in enumerate(height)
+  print(i,h)
+Here i and h are just variables where i is used to represent the index of each value and h is used to represent the actual values in the list.
+
+
+
 """
