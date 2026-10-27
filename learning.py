@@ -372,7 +372,7 @@ height = [6.14,4.50,5.50,6.20]
 weight = [64.50,65.30,55.70,54.40]
 
 np_2d = np.array([[height],[weight]])
-you can use the attribute arrayname.shape to show the number of rows and columns in te array.
+you can use the attribute arrayname.shape to show the number of rows and columns in the array.
 Example: np_2d.shape 
 Output: (2,4) - 2 rows 4 columns.
 NB: Atrributes are not similar to calling attributes in normal python objects.In objects methods we add brackets after them but in attributes we donot.
@@ -381,7 +381,7 @@ in numpy attributes : nd_2d.shape - no brackets.
 2d numpy arrays follow the same rules as one dimentional where they can only have one datatype.
 
 #SUBSETTING IN 2D ARRAYS
-1.np_2d[0][1] - Output: 6.14
+1.np_2d[0][1] - Output: 4.50
 2.np_2d[0,1] - 0 for the row, 1 for the column.
 3.np_2d [:,1:3] - the first : shows that we want to select both rows.
                 - After the comma, it now shows the subsetting of the colums whose data we want. 1:3, we want for the first and second columns(in terms of indexing) and not the third.
@@ -504,13 +504,13 @@ In order to determine how the points should appear in the output graph, we use m
 
 3.plt.plot(x, y, 's') - used for square markers only.
 
-4.plt.scatter(x,y, s=[list]) - IT shows that the size oeach plot/point is equal to specific values maybe of another list.This only works in a scatter plot as this is the only one we use points.
+4.plt.scatter(x,y, s=[list]) - IT shows that the size of each plot/point is equal to specific values maybe of another list.This only works in a scatter plot as this is the only one we use points.
 
 5.plt.scatter(x,y, c=col) - c=col shows that the colors of each of the points are to be given based on a seperate list col that is a list with all the colours corresponding to each value in the plot. Should have the same number of values as the values in both the lists forming the x and y axis.
 
 6. plt.scatter(x,y, alpha = 0.8) - Shows the transparency of each dot. When 0 it is almost transparent,when 1 it is fully visible.
 
-7. plt.text(x, y, 'the text') - It is used when you want to label specific points in the grapgh. It mean that you label 'the text' where the value of x is x and the value of y is y.
+7. plt.text(x, y, 'the text') - It is used when you want to label specific points in the graph. It mean that you label 'the text' where the value of x is x and the value of y is y.
 For example: plt.text(1550, 71, 'India')
              plt.text(2500, 80 , 'China')
 8.plt.grid() - It is used to draw gridlines on the graph.
@@ -568,7 +568,7 @@ If you donot specify this, the histogram will be drawn with bins of 10.
 2. plt.hist(ages, bins=6, density=True)  - Density involves calculating a frequency dencity of each height ensuring that the area of each bar is always 1. This ensures that all height are subsidised incase the values have  very large heights.
 
 3.plt.hist(ages, bins=6, weights=none / weights = purchases) - Here purchases is a seperate list that contains the weights of each value eg the amount spent by each customer.
-Here there are two grapgh at each bin, one for the normal count which is the normal values and the other with the weights where eacg value is added with its weight.
+Here there are two grapgh at each bin, one for the normal count which is the normal values and the other with the weights where each value is added with its weight.
 
 4.plt.hist(ages, bins=6, cumulative=True) - Here the frequency is a cummulative frequency where the height of each bin = its height + the heights of all its previous bins.
 
@@ -692,7 +692,7 @@ There are several ways to create and use dataframes.
 1. Creating them manually using a dictionary.
 This approach is not convenient expecially when you have large sets of data.
 
-In order to build a a dataframe to accomodate the values of a table,you can start by using a dictionary.
+In order to build a  dataframe to accomodate the values of a table,you can start by using a dictionary.
 Where the keys are the column labels while the values are a list of value /observations of each column.
 
 For Example
@@ -741,9 +741,9 @@ b. Choosing which data to load.
 
 8. pd.read_csv('data.csv', skipfooter = 2 engine = 'python') - skipfooter is used to skip rows at the bottom such as total or notes lines. It requires engine = 'python' .
 
-9. pd.read_csv('data.csv', index_col='country') - This determines which column forms the row labels, if none, you can provise your own which is tedious for a large dataset and reqiores index_col = 0.
+9. pd.read_csv('data.csv', index_col='country') - This determines which column forms the row labels, if none, you can provise your own which is tedious for a large dataset and requires index_col = 0.
 
-c. Contrling Datatypes.
+c. Controling Datatypes.
 
 10. pd.read_csv('data.csv', dtype={'zip_code': str, 'age': 'int32'}) - Dtype : forces columns to be read as a specific type. This matters for things like ZIP codes
 or IDs, where 00123 would otherwise lose its leading zeros by becoming the number 123. 
@@ -810,23 +810,28 @@ dataTable = pd.DataFrame(dict)
 1. Selecting data in a specific column.
 1. dataframename ['The column whose data you want to output.']
 dataTable ['Country'] - If you look at the type of the output data, you will find that it is a series.
-type(dataTable ['Country']) - Output: <class 'pandas.Series'>
-A series is like a 1 dimentional array that can be labbeled. Many series make up a dataframe.
+
+type(dataTable ['Country']) - 
+Output: <class 'pandas.Series'>
+
+A series is like a 1 dimentional array that can be labeled. Many series make up a dataframe.
+
 Inorder to ensure that the data in that column is output as a dataframe, we use two square brackets.
 dataTable [['Country']] 
 type(dataTable [['Country']]) - Output : <class 'pandas.DataFrame'>
+
 To select more that one column : dataTable[['Country','Capital']]
 NB: You can only select one column using this method as a series with one bracket pair. In order to select more than one column you select them as a dataframe with two bracket pairs. 
 Plain square brackets can pick columns, or they can pick rows, but one pair of brackets can't pick both at once.
 
 2. Selecting specific rows. Here we use index slicing.
-You can only access rows by slicing and not giving one index as square brackets are only used to acces columns by their labels.
+You can only access rows by slicing and not giving one index as square brackets are only used to access columns by their labels.
 #print(dataTable[[0]]) - This does not work as in order to access a row, you can only use slicing and one bracket.
 print(dataTable[0:1]) - Correct.
 
 dataTable[1:4] - This selects rows 1, 2,3 but not 4. It also selects the column lables row.
 NB: Donot use double brackets when handling rows, instead use single brackets since the output is already a dataframe.
- When using normal brackers to acces values, There is no specific order, but you cannot access rows using labels, only indexes .Label are for columns only.
+ When using normal brackets to access values, There is no specific order, but you cannot access rows using labels, only indexes. Labels are for columns only.
 
  #LOC FUNCTION
  .loc is a pandas function that is used to select items and to slice pandas dataframe based on labels.
@@ -852,8 +857,10 @@ KE   Kenya  Nairobi       40.56  11.54
 Selecting more than one row:
 dataTable.loc [['KE','UG']] - Use double square brackes for a dataframe.
 
-In order to slect specific rows and specific columns,the syntax is
+In order to select specific rows and specific columns,the syntax is
+
 dataTable.loc[[list of row labels],[list of columns]]
+
 dataTable [['KE','UK','UG'],['Country','Capital']] - Selects only those specific rows and columns.
 dataTable [:,['Country','Capital']] - You use the colon when you want to select all the rows but specific columns.
 You only select the rows when you want to display all the columns as done in the first example.
@@ -877,8 +884,7 @@ UG  Uganda  Kampala
 
 
 To select all rows and specific columns,we use:
-dataTable.iloc [:[0,1]]
-Output:
+dataTable.iloc [:[0,1]] 
  Country       Capital
 KE      Kenya       Nairobi
 UG     Uganda       Kampala
@@ -977,8 +983,9 @@ To get out of the loop,you simply ensure that the next statement does not have a
 """
 Inorder to subset pandas dataframes, for exampke to get only values that have met a specific criteria, we use:
 1.Get the column whose values you want to filter.
-2.Carry out the condition, mening filter the values that have met the condition and store it in a variable.
+2.Carry out the condition, meaning filter the values that have met the condition and store it in a variable.
 3.Use those values as the index/input in square brackets of the whole data frame.
+
 NB:In all these we use single brackets since we are working on a series not a dataframe in manipulation.
 For Example:
 
@@ -1057,14 +1064,14 @@ dataTable[np.logical_and(dataTable['Population'] > 45,dataTable['Area'] > 10)]
 
 #WHILE LOOP
 """
-The while loop is used when you want to run a commuand a specific number of times until a given condition is met.
+The while loop is used when you want to run a commuand a specific number of times until a given condition is met. Meaning the current condition becomes false.
 Syntax:
 while condition:
   expression.
 
 eg 
 while x > 4
-  x - x / 2
+  x = x / 2
   print x
 
 Output:
@@ -1072,7 +1079,7 @@ Output:
 4.0
 
 The condition has to be met at some point otherwise the loop will run forever.
-That is why in the program above, the value of x has to be increamented.
+That is why in the program above, the value of x has to be decreamented.
 
 You can use an if statement inside the while loop to make sure that the condition will always be met.
 
@@ -1122,7 +1129,7 @@ To make it cleaner, you can make the print statement better. For Example:
 for i ,h in enumerate(height):
   print("Height" + " " + str(i) + ":" +  str(h))
 
-The space makes sure that there is a space between values height and the index.
+The space makes sure that there is a space between Text height and the index.
 
 #Starting index 1
 You can make the string start at index one for example:
@@ -1245,6 +1252,9 @@ for x, y in house:
     print("the" + " " + str(x) + " " + "is" + " " + str(y) + " " + "sqm")
 
 x is the variable for the first value in each sublist while y is the variable for the second value in each sublist. In this case it is the areas list.
+The print statement above is the same as:
+  print("the " + str(x) + "is " + " " + str(y) + " " + "sqm")
+You can add the spaces after the texts instead of adding new spaces alltogether as shown above.
 
 Output:
 the hallway is 11.25 sqm
@@ -1253,4 +1263,68 @@ the living room is 20.0 sqm
 the bedroom is 10.75 sqm
 the bathroom is 9.5 sqm
 
+#Using Iterrows() - This is used when we want to iterate each row and output values of that specific row,its index and maybe specific columns.
+
+for index , item in dataTable.iterrows():
+    print (index,item ['Country'], item['Popultion'])
+
+Output:
+KE Kenya 40.56
+UG Uganda 50.79
+TZ Tanzania 70.46
+ZM Zimbambwe 44.39
+ML Malawi 56.54
+=========
+
+
+
+The index is used to output the index labels of each row while the item is a placeholder or variable name for each row where we specify the columns whose values we want to output in each row.
+For example: item['Country'] - This outputs only the value in the column country of that row.
+
+In order to produce the index value of each row, we can use the enumerate function while ensuring that the values belonging to the dataframe are in brackets.
+For Example:
+for i ,(index,item) in enumerate(dataTable.iterrows()):
+    print(i,index,item['Country'],item['Population'])
+Output:
+0 KE Kenya 40.56
+1 UG Uganda 50.79
+2 TZ Tanzania 70.46
+3 ZM Zimbambwe 44.39
+4 ML Malawi 56.54
+
+iterrows() is slow on big tables. For thousands of rows it's fine, but for hundreds of thousands, look for column-wide operations instead.
+It can change data types. Each row becomes a Series with one type, so mixed columns (text plus numbers) may all be converted to text or decimals.
+A faster alternative is itertuples(), which also keeps types more faithfully:
+It goes through and outputs one row at a time as a named tuple which is faster.
+for row in dataTable.itertuples():
+    print(row.Index, row.Country, row.Population)
+Output:
+KE Kenya 40.56
+UG Uganda 50.79
+TZ Tanzania 70.46
+ZM Zimbambwe 44.39
+ML Malawi 56.54
+
+
+for i, row in enumerate(dataTable.itertuples()):
+    print(1,row.Index, row.Country, row.Population)
+
+Output:
+0 KE Kenya 40.56
+1 UG Uganda 50.79
+2 TZ Tanzania 70.46
+3 ZM Zimbambwe 44.39
+4 ML Malawi 56.54
+
+Always use capital I since rows.Index is not the same as rows.index. 
+
+itertuples() returns each row as a named tuple, with one field per column plus a field called Index (capital I) for the row label.
+Every Python tuple already has a built-in method called .index(), which finds where a value sits inside the tuple. 
+Since Index and index are different names (Python is case-sensitive), row.index doesn't reach your row label. It reaches that built-in method, and print shows it as <built-in method index of Pandas object at 0x...>. 
+The long number is just a memory address.
+
+
+    
+
 """
+

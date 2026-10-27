@@ -33,7 +33,7 @@ print(dataTable.iloc [[0,1],[0,1]])
 
 #print(dataTable[[0]]) - This does not work as in order to access a row, you can only use slicing and one bracket.
 # print(dataTable [['UG']] ) - You cannot use an index to access a row.
-#print(dataTable.loc[['Country']]) - When you use loc and iloc, the strict firmat is row values/indexes and then columns.You cannot give a column label in the place of a row.
+#print(dataTable.loc[['Country']]) - When you use loc and iloc, the strict format is row values/indexes and then columns.You cannot give a column label in the place of a row.
 csvData = pd.read_csv('assets\csvFiles\sample-sales.csv' , index_col= None, parse_dates = ['date'] , dtype= {'order_id':str},nrows = 10 )
 
 #print(csvData)
@@ -54,3 +54,21 @@ for i,country in enumerate(dataTable["Country"]):
     print(i,country)
 
 #print(dataTable.iterrows(dataTable[["Country"]]))
+
+print("=========\n")
+for index , item in dataTable.iterrows():
+    print (index,item ['Country'], item['Population'])
+
+print("=========\n")
+for i ,(index,item) in enumerate(dataTable.iterrows()):
+    print(i,index,item["Country"],item["Population"])
+
+
+for row in dataTable.itertuples():
+    print(row.Index, row.Country, row.Population)
+
+
+
+for i, row in enumerate(dataTable.itertuples()):
+    print(i,row.Index, row.Country, row.Population)
+

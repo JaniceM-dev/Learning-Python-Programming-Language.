@@ -73,7 +73,7 @@ print("Total Random (column) = " + str(np_total2dA))
 print("Total Random (row) = " + str(np_total2dB))
 
 #Using 2B (2 rows,40 columns)
-bmi2dB = np_total2dB[0,:] / (np_total2dB[1,:]**2)
+bmi2dB = np_total2dB[1,:] / (np_total2dB[0,:]**2)
 print("Total 2D BMI OF DATA 2B = " + str(bmi2dB))
 
 
@@ -86,7 +86,7 @@ print("Std of Weight of Random data 2B :" + str(round(np.std(np_total2dB[1,:]),2
 print("Correlation coeeficient of data 2B:" + str(np.corrcoef(np_total2dB[0,:],np_total2dB[1,:])))
 
 #Using 2A (40 rows,2columns)
-bmi2dA = np_total2dA[:,0] / (np_total2dA[:,1]**2)
+bmi2dA = np_total2dA[:,1] / (np_total2dA[:,0]**2)
 print("Total 2D BMI OF DATA 2A = " + str(bmi2dA))
 
 
