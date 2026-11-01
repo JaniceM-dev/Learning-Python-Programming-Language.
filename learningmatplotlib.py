@@ -88,4 +88,9 @@ plt.scatter(year,populations)
 for i , country in enumerate(countries):
     plt.text(year[i],populations[i],country)
 
-plt.show()
+#plt.show()
+
+
+
+for key,value in world.items():
+    print(key,value)

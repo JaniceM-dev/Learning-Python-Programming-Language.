@@ -1324,7 +1324,168 @@ Since Index and index are different names (Python is case-sensitive), row.index 
 The long number is just a memory address.
 
 
-    
+"""
 
+#LOOPING OVER OTHER DATA STRUCTURES.
+"""
+1. Looping over Dictionaries.
+In order to loop over dictionaries,one has to call and use the attribure dictionaryname.items() in order to break dow the value in the dictionary to a key and a value.
+
+world = {"Kenya":50.6,"Uganda":40.69,"Tanzania":30.34}
+for key ,value in world:
+    print(key,value)
+The above gives an error.
+output:
+ValueError: too many values to unpack (expected 2)
+
+The correct format is:
+for key,value in world.items():
+    print(key,value)
+
+Output:
+Kenya 50.6
+Uganda 40.69
+Tanzania 40.5
+
+Dictinaries are inherently unordered, therefore the order in which they are iterrated over varies. 
+The names key and value are variables that can be replaced. But the order matters, the first one is for the key, the second for the value.    
+
+# Looping over values in a numpy array.
+For a normal 1Dimentional arry, the normal syntax works:
+
+for var in sequence:
+    print(var)
+
+bmi = np_weight/np_height**2
+
+for value in bmi:
+    print(round(value,2))
+Output:
+1.71
+3.22
+1.84
+1.42
+
+For a 2D array, this gives an error.
+np_2d = np.array([height,weight])
+
+for value in  np_2d:
+    print(value)    
+
+Output: 
+[6.14 4.5  5.5  6.2 ]
+[64.5 65.3 55.7 54.4]
+
+When looping through 2d numpy arrays, we use a numpy function known as np.nditer() where the input is the 2d array you want to loop over.
+n dimentional arrays iterate.
+
+for value in np.nditer(np_2d):
+    print(value)
+ 
+ Output:
+6.14
+4.5
+5.5
+6.2
+64.5
+65.3
+55.7
+54.4
+#NB: Dictionaries require a method, numpy arrays require a function.
+
+We use the iterrows function in pandas to iterate over each row.
+for label,row in dataTable.uterrows():
+    print(label)
+    print(row)
+Output:
+
+KE
+Country         Kenya
+Capital       Nairobi
+Population      40.56
+Area            11.54
+Name: KE, dtype: object
+
+UG
+Country        Uganda
+Capital       Kampala
+Population      50.79
+Area            18.39
+Name: UG, dtype: object
+
+TZ
+Country           Tanzania
+Capital       Da-el-Salaam
+Population           70.46
+Area                   7.9
+Name: TZ, dtype: object
+
+ZM
+Country       Zimbambwe
+Capital          Harare
+Population        44.39
+Area               5.78
+Name: ZM, dtype: object
+
+ML
+Country         Malawi
+Capital       Lilongwe
+Population       56.54
+Area              3.59
+Name: ML, dtype: object
+ 
+label is for the row labels row is for each row output as a series as shown above.
+In order to utput specific columns you can use the rows variable to select the column whose value you want to output in each row as shown abovee.
+
+for index , item in dataTable.iterrows():
+    print (index,item ['Country'], item['Population'])
+Output:
+0 KE Kenya 40.56
+1 UG Uganda 50.79
+2 TZ Tanzania 70.46
+3 ZM Zimbambwe 44.39
+4 ML Malawi 56.54
+
+#Adding an extra column to store the length of each country name.
+
+for index , row in dataTable.iterrows():
+    dataTable.loc[index , "name_length"] = len(row["Country"])
+print(dataTable)
+
+
+Output:
+ Country       Capital  Population   Area  name_length
+KE      Kenya       Nairobi       40.56  11.54          5.0
+UG     Uganda       Kampala       50.79  18.39          6.0
+TZ   Tanzania  Da-el-Salaam       70.46   7.90          8.0
+ZM  Zimbambwe        Harare       44.39   5.78          9.0
+ML     Malawi      Lilongwe       56.54   3.59          6.0
+
+ dataTable.loc[index , "name_length"] = len(row["Country"])
+
+The loc function as we learnt above is used when you want to reference to  rows and columns using labels.
+index is used to represent the row label.
+name_length is used to reference to a new column name_length where the values are to be stored.
+len(row["Country"]) - This is used when you want to store the values of the number of letters of each country in the new column.
+
+This is not very efficient for a large dataset.
+Instead, in order to create a new column by applying a function to the values of another column , we use apply.
+
+dataTable["name_length"] = dataTable["Country"].apply(len) - We use len this way here since len is a function.
+This produeces the same output.
+It is more effeicient for a large dataset.
+This function takes in each value in the column country and applys the function len to it and produces an array with the name name_length which is used as a column in the dataframe.
+
+For a method such as upper, we use,
+dataTable["COUNTRY"] = dataTable["Country"].apply(str.upper)
+str.upper shows that it is a method and not a function like len.
+
+Ouptput:
+ Country       Capital  Population   Area  name_length    COUNTRY
+KE      Kenya       Nairobi       40.56  11.54          5.0      KENYA
+UG     Uganda       Kampala       50.79  18.39          6.0     UGANDA
+TZ   Tanzania  Da-el-Salaam       70.46   7.90          8.0   TANZANIA
+ZM  Zimbambwe        Harare       44.39   5.78          9.0  ZIMBAMBWE
+ML     Malawi      Lilongwe       56.54   3.59          6.0     MALAWI
 """
 

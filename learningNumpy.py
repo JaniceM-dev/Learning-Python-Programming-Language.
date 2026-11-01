@@ -154,3 +154,12 @@ for i, (h,w) in enumerate(zip(height,weight)): # Always put the variables repres
 #looping Characters.
 for i in "family":
     print(i.capitalize())
+
+for value in bmi:
+    print(round(value,2))
+
+for value in  np_2d:
+    print(value)    
+
+for value in np.nditer(np_2d):
+    print(value)

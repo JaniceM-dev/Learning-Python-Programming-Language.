@@ -72,3 +72,14 @@ for row in dataTable.itertuples():
 for i, row in enumerate(dataTable.itertuples()):
     print(i,row.Index, row.Country, row.Population)
 
+
+for label,row in dataTable.iterrows():
+    print(label)
+    print(row)
+
+for index , row in dataTable.iterrows():
+    dataTable.loc[index , "name_length"] = len(row["Country"])
+print(dataTable)
+
+dataTable["COUNTRY"] = dataTable["Country"].apply(str.upper)
+print(dataTable)
