@@ -1489,3 +1489,66 @@ ZM  Zimbambwe        Harare       44.39   5.78          9.0  ZIMBAMBWE
 ML     Malawi      Lilongwe       56.54   3.59          6.0     MALAWI
 """
 
+#STATISTICS PROBLEM SOLVING
+"""
+1.np.random.rand() this generates random numbers in a decimal format. It generates numbers between 0 and 1 if you don't specify the parameters.
+2. np.random.randint() - This does the same as rand but it generates only integer numbers.
+For Example.
+Np.random.randint(1,7) - This generates random numbers between 1 and 6 at each time it is called.
+We use np.random.seed(123) - eg in order to ensure that it randomises at every trial making them almost similar based on the input of the random function.
+
+#Randomising each step to create a random walk.
+1. You can use an if else statement.
+
+np.random.seed(123)
+counter = [] - This is to create a new list where the new values will be stored.
+for x in range(10): - This is to create a counter where it will repeat 10 times starting with index 0.
+    coin = np.random.randint(0,2) - This produces either o or 1 but not 2.
+    if coin == 1:
+        counter.append("heads")
+    else:
+        counter.append("Tails")
+
+print(counter)
+
+Output: ['Tails', 'heads', 'Tails', 'Tails', 'Tails', 'Tails', 'Tails', 'heads', 'heads', 'Tails']
+
+The above program loops through 10 times and append the list based on the value of coin either heads or tails.
+
+The .append attribute is used to add new values to the list.
+
+The above program is for a list of random steps but not a random walk since one value does not depend on the value of the previous one.
+
+In order to make it a random walk we can use the following program.
+
+np.random.seed(123)
+tails = [0] - This creates a new list tails whose first value is 0.
+for x in range(10): - This create a range that will make the iteration /loop happen 10 times.
+    coin = np.random.randint(0,2) - creates a random value in every iteration, either 1 or 0.
+    tails.append(tails[x] + coin) - This adds the previous value of tails to the current value of coin so that a value is dependent on its revious value forming a random walk.
+
+print(tails)
+
+Output:
+[0, 0, 1, 1, 1, 1, 1, 1, 2, 3, 3]
+
+1 means tail and 0 head.
+Where each value keeps increamenting , it means that the value of coin is 1 which is tail.
+The last value shows the number of times that tail has been chosen.
+Stagnant values shows head.
+
+#Setting a maximum value.
+step = max(0 , step - 1) - This used to eensure that a variable never goes below a specific value at a specific time.
+The first value in the argument is the maximum value, the second one is the operation that was to be done to decrease step.
+We use a bove instead of just normal:
+step = step - 1
+
+#Plotting the values using matplotlib.
+
+import matplotlib.pyplot as plt
+plt.plot(x, y)
+plt.show()
+The first list you pass is mapped onto the x axis and the second list is mapped onto the y axis.
+If you pass only one argument, Python will know what to do and will use the index of the list to map onto the x axis, and the values in the list onto the y axis.
+If you only provide one list, the values in that list will be used as the y axis while the x axis will be made up of the indexes of the values in that list. The x axis is improvised.
+"""

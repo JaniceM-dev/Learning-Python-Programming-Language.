@@ -163,3 +163,22 @@ for value in  np_2d:
 
 for value in np.nditer(np_2d):
     print(value)
+
+np.random.seed(123)
+counter = [] 
+for x in range(10):
+    coin = np.random.randint(0,2) 
+    if coin == 1:
+        counter.append("heads")
+    else:
+        counter.append("Tails")
+
+print(counter)
+
+np.random.seed(123)
+tails = [0] 
+for x in range(10): 
+    coin = np.random.randint(0,2) 
+    tails.append(tails[x] + coin) 
+
+print(tails)
