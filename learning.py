@@ -1552,3 +1552,35 @@ The first list you pass is mapped onto the x axis and the second list is mapped 
 If you pass only one argument, Python will know what to do and will use the index of the list to map onto the x axis, and the values in the list onto the y axis.
 If you only provide one list, the values in that list will be used as the y axis while the x axis will be made up of the indexes of the values in that list. The x axis is improvised.
 """
+
+#Distributions.
+"""
+A distribution can be termed as the number of times a final value appears.
+For example in in our previous code, if we repeat tha action of counting the number of tails produced in a trial of 10 times, a thousand times and add the values to a new list,
+the new list will contain all the final vaus showing the number of times tails has been prooduced in every ten times.
+
+For Example:
+np.random.seed(123)
+final_tails = []
+for x in range(100):  - Repeats the loop 100 times and each time creates a new final value of tails after the second loop is complete.
+    tails = [0]
+    for x in range(10):
+        coin = np.random.randint(0,2)
+        tails.append(tails[x] + coin)
+    final_tails.append(tails[-1]) - This is outside the inner loop and appends the final_tails list after every end of loop.
+print(final_tails)
+
+Output:
+[3, 6, 4, 5, 4, 5, 3, 5, 4, 6, 6, 8, 6, 4, 7, 5, 7, 4, 3, 3, 4, 5, 8, 5, 6, 5, 7, 6, 4, 5, 8, 5, 8, 4, 6, 6, 3, 4, 5, 4, 7, 8, 9, 4, 3, 4, 5, 6, 4, 2, 6, 6, 5, 7, 5, 4, 5, 5, 6, 7, 6, 6, 6, 3, 6, 3, 6, 5, 6, 5, 6, 4, 6, 6, 3, 4, 4, 2, 4, 5, 4, 6, 6, 6, 8, 4, 6, 5, 7, 4, 6, 5, 4, 6, 7, 3, 7, 4, 5, 7]
+#Visualizing the distribution. 
+In order to visualize the distribution, we use a histogram with the input being the final list of final_tails.
+Instead of just printing, we can do this below and specify the number of bins:
+
+plt.hist(final_tails, bins = 6)
+plt.show() - To display the histogram.
+IN using hacker statistics, we aim to use this to get an output that is as near to the theoretical output or distribution or the one done on pen and paper.
+Hence , you need to repeat the distribution(the outer loop) zillions of times in order to get a distribution that is exactly like that in the theoretical distribution.
+This takes a long time but 10000 gives a good estimate.
+
+The interpretation of the graph is that about 25 of the 100 times that the loop is carried out, the output is tails 6 times etc.
+"""
