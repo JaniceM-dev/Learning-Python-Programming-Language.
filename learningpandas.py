@@ -83,3 +83,14 @@ print(dataTable)
 
 dataTable["COUNTRY"] = dataTable["Country"].apply(str.upper)
 print(dataTable)
+
+#Subsetting using pandas
+
+s = pd.Series(dict)
+print(s.value_counts())
+ # Always specify that we are looking for the value in the first list and not its counter.
+print(s.value_counts().idxmax())
+
+print(dataTable["Population"].value_counts())
+print(dataTable["Population"].mode())
+print(dataTable["Population"].value_counts().idxmax())

@@ -751,7 +751,7 @@ or IDs, where 00123 would otherwise lose its leading zeros by becoming the numbe
 11. pd.read_csv('data.csv', parse_dates=['order_date'], dayfirst=True) -  converts text like 2026-10-10 into real date objects, so you can sort by time or extract months and years.
 dayfirst=True - This is used when you want to sort the dates by day first.
 
-12.d.read_csv('data.csv', thousands=',') - thousands and decimal: handle numbers formatted differently from the default. 1,200,000 can be read as a number.
+12.pd.read_csv('data.csv', thousands=',') - thousands and decimal: handle numbers formatted differently from the default. 1,200,000 can be read as a number.
 pd.read_csv('data.csv', decimal=',', sep=';') - In european style, 3,14 can be read as 3.14 .
 
 13.pd.read_csv('data.csv', converters={'price': lambda s: float(s.replace('$',''))}) - Converters helps one apply their own function to a column for example stripping a % sign etc. 
@@ -762,7 +762,7 @@ lambda s - This is a one line function used without a name and it used for short
 float(s.replace('%','')) - This removes the % character and replaces it with nothing and converts the data to a float. This is useful for data that you want to convert to float for calculations.
 
 You can also use:
-converters = {'column_name': some_function}
+converters = {'column_name': some_function}~
 converters = {'discount': clean_percent} - You write the function without the brackets after. Then you define the function elsewhere.
 
 def clean_percent(s):
@@ -805,7 +805,7 @@ dict = {
 }
 dataTable = pd.DataFrame(dict)
 
-#SELCTING AND INDEXING DATA IN A DATAFRAME.
+#SELECTING AND INDEXING DATA IN A DATAFRAME.
 
 1. Selecting data in a specific column.
 1. dataframename ['The column whose data you want to output.']
@@ -825,7 +825,7 @@ NB: You can only select one column using this method as a series with one bracke
 Plain square brackets can pick columns, or they can pick rows, but one pair of brackets can't pick both at once.
 
 2. Selecting specific rows. Here we use index slicing.
-You can only access rows by slicing and not giving one index as square brackets are only used to access columns by their labels.
+You can only access rows by slicing and not giving  index names as square brackets are only used to access columns by their labels.
 #print(dataTable[[0]]) - This does not work as in order to access a row, you can only use slicing and one bracket.
 print(dataTable[0:1]) - Correct.
 
@@ -861,8 +861,8 @@ In order to select specific rows and specific columns,the syntax is
 
 dataTable.loc[[list of row labels],[list of columns]]
 
-dataTable [['KE','UK','UG'],['Country','Capital']] - Selects only those specific rows and columns.
-dataTable [:,['Country','Capital']] - You use the colon when you want to select all the rows but specific columns.
+dataTable.loc [['KE','UK','UG'],['Country','Capital']] - Selects only those specific rows and columns.
+dataTable.loc [:,['Country','Capital']] - You use the colon when you want to select all the rows but specific columns.
 You only select the rows when you want to display all the columns as done in the first example.
 
 
@@ -899,7 +899,7 @@ It is only in iloc where we use indexes with double brackets, we donot do that i
 
 #print(dataTable[[0]]) - This does not work as in order to access a row, you can only use slicing and one pair of square brackets.
 #print(dataTable[0:1]) - Correct
-# print(dataTable [['UG']] ) - You cannot use an index to access a row if you are not using the loc function.
+# print(dataTable [['UG']] ) - You cannot use a row label to access a row if you are not using the loc function.
 
 """
 #COMPARISON OPERATORES
@@ -912,7 +912,7 @@ Comparison Operators.
 > - Greater Than
 < - Less Than
 <= - Less than or equal to.
->= - Greate than or equal to.
+>= - Greater than or equal to.
 != - Not equal to
 
 Comparison in strings compares character by character starting with the first one in their alphabetical order.
@@ -936,7 +936,7 @@ np_height = np.array(height)
 
 bmi = np_weight/np_height**2
 Example 1:
-bm1 > 2 and bmi < 3 - This produces an error
+bmi > 2 and bmi < 3 - This produces an error
 
 Example 2:
 print(bmi>4)
@@ -965,7 +965,7 @@ Syntax:
 if condtion:
   expression
 
-There is a semicolon after the condition. If the condition is true the statement is executed  else it is not.
+There is a colon after the condition. If the condition is true the statement is executed  else it is not.
 Ensure that there is a tab/4spaces under the if condition to show that all the statements underneath it are under the if condition and are only executed if the statement is true.
 
 Overall Syntax:
@@ -981,7 +981,7 @@ To get out of the loop,you simply ensure that the next statement does not have a
 
 #Subsetting Pandas Dataframes.
 """
-Inorder to subset pandas dataframes, for exampke to get only values that have met a specific criteria, we use:
+Inorder to subset pandas dataframes, for example to get only values that have met a specific criteria, we use:
 1.Get the column whose values you want to filter.
 2.Carry out the condition, meaning filter the values that have met the condition and store it in a variable.
 3.Use those values as the index/input in square brackets of the whole data frame.
@@ -1069,8 +1069,9 @@ Syntax:
 while condition:
   expression.
 
-eg 
-while x > 4
+eg
+x = 16 
+while x > 4:
   x = x / 2
   print x
 
@@ -1096,7 +1097,7 @@ Output:
 -1
 0
 This loop ends when the condition is met, else it will never end.
-The while loops above manipulates the value of x before printing it.
+The while loop above manipulates the value of x before printing it.
 """
 
 # THE FOR LOOP
@@ -1127,14 +1128,14 @@ Here i and h are just variables where i is used to represent the index of each v
 
 To make it cleaner, you can make the print statement better. For Example:
 for i ,h in enumerate(height):
-  print("Height" + " " + str(i) + ":" +  str(h))
+  print("Height " + str(i) + ":" +  str(h))
 
 The space makes sure that there is a space between Text height and the index.
 
 #Starting index 1
 You can make the string start at index one for example:
 for i , h in enumerate(height , start = 1): #Ensure tha the comma is there.
-   print("Height" + " " + str(i) + ":" +  str(h))
+   print("Height " + str(i) + ":" +  str(h))
 
 output:
 Height 1:6.14
@@ -1154,6 +1155,7 @@ Output:
 2 5.5
 3 6.2
 2: 
+
 for i in range(len(height)):
     print(i,height[i])
 
@@ -1184,7 +1186,7 @@ Output:
 
 You can use both enumerate and zip when you want to extract the values in two different lists and give them index values.
 For Example:
-for i, (h,w) in enumerate(zip(height,weight)): # Always put the variables representing the values in the zip in brackets.
+for i, (h,w) in enumerate(zip(height,weight)): # Always put the variables representing the values in the zip in brackets when using enumerate with zip.
     print(i,h,w)
 Output:
 0 6.14 64.5
@@ -1253,7 +1255,7 @@ for x, y in house:
 
 x is the variable for the first value in each sublist while y is the variable for the second value in each sublist. In this case it is the areas list.
 The print statement above is the same as:
-  print("the " + str(x) + "is " + " " + str(y) + " " + "sqm")
+  print("the " + str(x) + "is " + str(y) + " sqm")
 You can add the spaces after the texts instead of adding new spaces alltogether as shown above.
 
 Output:
@@ -1307,7 +1309,7 @@ ML Malawi 56.54
 
 
 for i, row in enumerate(dataTable.itertuples()):
-    print(1,row.Index, row.Country, row.Population)
+    print(i,row.Index, row.Country, row.Population)
 
 Output:
 0 KE Kenya 40.56
@@ -1329,7 +1331,7 @@ The long number is just a memory address.
 #LOOPING OVER OTHER DATA STRUCTURES.
 """
 1. Looping over Dictionaries.
-In order to loop over dictionaries,one has to call and use the attribure dictionaryname.items() in order to break dow the value in the dictionary to a key and a value.
+In order to loop over dictionaries,one has to call and use the attribure dictionaryname.items() in order to break down the value in the dictionary to a key and a value.
 
 world = {"Kenya":50.6,"Uganda":40.69,"Tanzania":30.34}
 for key ,value in world:
@@ -1351,7 +1353,7 @@ Dictinaries are inherently unordered, therefore the order in which they are iter
 The names key and value are variables that can be replaced. But the order matters, the first one is for the key, the second for the value.    
 
 # Looping over values in a numpy array.
-For a normal 1Dimentional arry, the normal syntax works:
+For a normal 1Dimentional array, the normal syntax works:
 
 for var in sequence:
     print(var)
@@ -1435,7 +1437,7 @@ Area              3.59
 Name: ML, dtype: object
  
 label is for the row labels row is for each row output as a series as shown above.
-In order to utput specific columns you can use the rows variable to select the column whose value you want to output in each row as shown abovee.
+In order to output specific columns you can use the rows variable to select the column whose value you want to output in each row as shown above.
 
 for index , item in dataTable.iterrows():
     print (index,item ['Country'], item['Population'])
@@ -1472,7 +1474,7 @@ This is not very efficient for a large dataset.
 Instead, in order to create a new column by applying a function to the values of another column , we use apply.
 
 dataTable["name_length"] = dataTable["Country"].apply(len) - We use len this way here since len is a function.
-This produeces the same output.
+This produces the same output.
 It is more effeicient for a large dataset.
 This function takes in each value in the column country and applys the function len to it and produces an array with the name name_length which is used as a column in the dataframe.
 
@@ -1525,7 +1527,7 @@ np.random.seed(123)
 tails = [0] - This creates a new list tails whose first value is 0.
 for x in range(10): - This create a range that will make the iteration /loop happen 10 times.
     coin = np.random.randint(0,2) - creates a random value in every iteration, either 1 or 0.
-    tails.append(tails[x] + coin) - This adds the previous value of tails to the current value of coin so that a value is dependent on its revious value forming a random walk.
+    tails.append(tails[x] + coin) - This adds the previous value of tails to the current value of coin so that a value is dependent on its previous value forming a random walk.
 
 print(tails)
 
@@ -1538,9 +1540,9 @@ The last value shows the number of times that tail has been chosen.
 Stagnant values shows head.
 
 #Setting a maximum value.
-step = max(0 , step - 1) - This used to eensure that a variable never goes below a specific value at a specific time.
+step = max(0 , step - 1) - This used to ensure that a variable never goes below a specific value at a specific time.
 The first value in the argument is the maximum value, the second one is the operation that was to be done to decrease step.
-We use a bove instead of just normal:
+We use a above instead of just normal:
 step = step - 1
 
 #Plotting the values using matplotlib.
@@ -1557,7 +1559,7 @@ If you only provide one list, the values in that list will be used as the y axis
 """
 A distribution can be termed as the number of times a final value appears.
 For example in in our previous code, if we repeat tha action of counting the number of tails produced in a trial of 10 times, a thousand times and add the values to a new list,
-the new list will contain all the final vaus showing the number of times tails has been prooduced in every ten times.
+the new list will contain all the final values showing the number of times tails has been produced in every ten times.
 
 For Example:
 np.random.seed(123)
@@ -1567,7 +1569,7 @@ for x in range(100):  - Repeats the loop 100 times and each time creates a new f
     for x in range(10):
         coin = np.random.randint(0,2)
         tails.append(tails[x] + coin)
-    final_tails.append(tails[-1]) - This is outside the inner loop and appends the final_tails list after every end of loop.
+    final_tails.append(tails[-1]) - This is outside the inner loop and appends the final_tails list after every end of the inside loop.
 print(final_tails)
 
 Output:
@@ -1583,4 +1585,165 @@ Hence , you need to repeat the distribution(the outer loop) zillions of times in
 This takes a long time but 10000 gives a good estimate.
 
 The interpretation of the graph is that about 25 of the 100 times that the loop is carried out, the output is tails 6 times etc.
+
+np_finals = np.array(final_tails)
+np_finalsT = np.transpose(np.finals)
+plt.plot(np_finalsT , bins = 6)
+
+What np.transpose does:
+It flips a table over its diagonal, so rows become columns and columns become rows.
+
+Why you would do it:
+1.Your data comes in the wrong orientation. For example, each inner list is one variable (such as one coin-flip experiment) but the tool youre using expects each inner list to be one observation.
+2.To make matrix multiplication shapes line up.
+3.To plot data differently. For instance, plt.plot(np_finalsT) draws one line per column of the transposed array.
+
+It flips a table over its diagonal, so rows become columns and columns become rows.
+You can't do np.transpose on a plain list the way you'd like. NumPy can convert one for you, but it's best to convert deliberately. More generally, arrays offer several benefits over lists.
+
+NB: np.random.rand() - This function already produces a random number,decimal or not between 0 and 1 so you donot have to specify the arguments when this is the range of numbers you want.
+
+Select last row from np_aw_t: ends
+ends = np_aw_t[-1,:]
+"""
+
+#Counting the number of times a value appears in a group of values, eg a list, a DataFarame , a Dictionary or in Numpy.
+"""
+#Counting in a list.
+countries = ["Kenya","India","Kenya","Tanzania"]
+
+1. Using listname.count(value in the list).
+This syntax is used when you want to count the number of times that a specific value appears in a list.
+For Example:
+countries.count("Kenya") - This returns the number of times that Kenya has been written in that list.
+Output: 2
+
+2. Using the counter Function.
+from collections import Counter - You donot have to install any packages,you just import.
+
+Counter is a tool from Python's standard library (nothing to install). It goes through the list once and builds a tally of every value, like marking tally strokes on paper.
+print(Counter(countries)) - This returns a dictionary with every unique list item as the keys and the number of times that that list item has been repeated as the values.
+Output:
+Counter({'Kenya': 2, 'India': 1, 'Tanzania': 1})
+
+3.print(counter(countries).most_common(1)) -  this returns the key-value pair of the list item with the highest counters.
+Output:
+[('Kenya', 2)]
+
+4.print(counter(countries).most_common(1)[0][0]) -  this returns the only the key (The list item) of the value with the highest counter.
+Output:
+Kenya
+
+5.print(counter(list).most_common(4)) - This returns the key-value pairs of the list items with the highest counters.
+
+Output:
+[('Kenya', 2), ('India', 1), ('Tanzania', 1)]
+
+#Seeing how counter works under the hood with a manual version with a dictionary.
+counts = {}
+for c in countries:
+    counts[c] = counts.get(c,o) + 1
+
+print(counts)
+most_frequent = max(counts , key = counts.get)
+print(most_frequent)
+
+Output:
+[('Kenya', 2), ('India', 1), ('Tanzania', 1)]
+Kenya
+
+
+
+counts.get(c, 0) means “give me the current count for c, or 0 if it hasn't appeared yet.” Then we add 1 to show that this value appears in the list.
+
+6.Using the max() function.
+counts = max(set(listname),key = countries.count) - This is used to set every value in the list as a unique value and counts the number of times each unique value appears.Then the max function returns the value with the highest counter.Key = counter ensures that we are counting based on counter and not alphabetical order.
+most_common(n) returns the top n values as (value, count) pairs, sorted from highest to lowest. Reading [0][0] means “first pair, first item,” which is the value itself.
+
+largestCount = max(set(countries), key = countries.count)
+print(largestCount)
+
+Output:
+Kenya
+This is tedious for  larger  data as it has to go through the list each time for each unique list item.In this case counter function is faster.
+
+#Counting in pandas Dataframe.
+variablename = pd.Series(List) - This converts the list to a pandas series.
+1.Using variablename.value_counts - This counts the number of times that each unique value in that list which is now a series appears.
+s = pd.Series(dict)
+print(s.value_counts())
+
+Output:
+[Kenya, Uganda, Tanzania, Zimbambwe, Malawi]          1
+[Nairobi, Kampala, Da-el-Salaam, Harare, Lilongwe]    1
+[40.56, 50.79, 70.46, 44.39, 56.54]                   1
+[11.54, 18.39, 7.9, 5.78, 3.59]                       1
+Name: count, dtype: int64
+
+2. Using variablename.value_counts().idxmax() - This returns the value with the highest counter in that list.
+print(s.value_counts().idxmax())
+
+Output:
+['Kenya', 'Uganda', 'Tanzania', 'Zimbambwe', 'Malawi']
+
+#Counters when the values are already in a dataframe and in a specific column.
+3.dataFrameName['columnName'].value_counts() - Counts the number of times each value appears in that column and prints the output.
+print(dataTable["Population"].value_counts())
+
+Output:
+Population
+40.56    1
+50.79    1
+70.46    1
+44.39    1
+56.54    1
+
+4. dataFrameName('columnName').mode() - This returns the most repeated value in the list where the list is made up of integers.
+print(dataTable["Population"].value_counts())
+
+Output:
+Population
+40.56    1
+50.79    1
+70.46    1
+44.39    1
+56.54    1
+
+
+5.dataFrameName['columnName'].value_counts().idxmax() - Finds the value with the max counts and selects the first one if there is a tie.
+print(dataTable["Population"].value_counts().idxmax())
+
+Output:
+40.56
+
+#Counting Values in numpy.
+np_height
+
+1. Using the keyword Unique.
+unique , counts = np.unique(np_height, return_counts = True) - This returns each unique value in the array and the number of times it appears in the array.
+print(unique)
+print(count)
+print(unique[count.argmax()])
+
+
+The function above creates two different lists as shown below
+OUTPUT:
+unique = [values in the list]
+counts = [the counts of each unique value]
+
+Actual Output:
+[4.5  5.5  6.14 6.2 ]
+[1 1 1 1]
+4.5
+
+unique[counts.argmax()] - this is used to subset the unique list that has been created and to return the position of the value with the highest counts.
+It finds the position of the biggest count, which you use to look up the matching value.
+
+#Presence of a Tie.
+if there is a tie.
+counter(data).most_common(1) - This returns only one of the values,the one seen first.
+
+pd.Series(Data).mode()- This returns all the tied values in the mode position.
+
+
 """

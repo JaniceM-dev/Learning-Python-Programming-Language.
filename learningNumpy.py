@@ -193,6 +193,43 @@ for x in range(100):
         tails.append(tails[x] + coin)
     final_tails.append(tails[-1]) 
 
+final_tailsArray = np.array(final_tails)
+final_tailsArrayT = np.transpose(final_tailsArray)
 #print(final_tails)
-plt.hist(final_tails, bins = 6 )
-plt.show() 
+plt.plot(final_tailsArrayT)
+#plt.show() 
+
+countries = ["Kenya","India","Kenya","Tanzania"]
+print(countries.count("Kenya"))
+
+
+counts = {}
+for c in countries:
+    counts[c] = counts.get(c,0) + 1
+
+print(counts)
+most_frequent = max(counts , key = counts.get)
+print(most_frequent)
+
+#Using Counter
+from collections import Counter
+
+print(Counter(countries))
+print(Counter(countries).most_common(1))
+print(Counter(countries).most_common(1)[0][0])
+print(Counter(countries).most_common(4))
+
+#using the max function.
+
+largestCount = max(set(countries), key = countries.count)
+print(largestCount)
+
+#Using Numpy Arrays.
+unique , count = np.unique(np_height , return_counts=True )
+print(unique)
+print(count)
+print(unique[count.argmax()]) # This returns the first value even if there is a tie.
+
+
+
+
