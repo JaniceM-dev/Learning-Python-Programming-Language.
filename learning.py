@@ -1747,3 +1747,92 @@ pd.Series(Data).mode()- This returns all the tied values in the mode position.
 
 
 """
+#Errors made when doing the Netflix Project.
+"""
+1.moviesReleased = np.logical_and(netflix_df['release_year'] >= 1990,netflix_df['release_year'] < 2000,netflix_df['type'] == 'Movie' )
+np.logical_and can only take two conditions. If you input three, the last condition will not be executed but will be used as a placeholder for the output.
+
+2.short = np.logical_and(netflix_df['release_year'] >= 1990,netflix_df['release_year'] < 2000
+,np.logical_and(netflix_df['duration'] < 90,netflix_df['type'] == 'Movie',netflix_df['genre'] == 'Action'))
+Solution.
+
+1. Use the & symbol to show 'and' and place each condition in brackets.
+moviesReleased = (netflix_df['release_year'] >= 1990)& (netflix_df['release_year'] < 2000)& (netflix_df['type'] == 'Movie' )#
+
+Better Option is to filter the dataframe with the data directly and then store that in a variable.
+movies_1990s = netflix_df[(netflix_df['release_year'] >= 1990)& (netflix_df['release_year'] < 2000)& (netflix_df['type'] == 'Movie' )] 
+
+2. Option 2 is using np.logical_and.reduce() function that allows you to input more than one condition at once.
+short = np.logical_and.reduce(netflix_df['release_year'] >= 1990,netflix_df['release_year'] < 2000
+,netflix_df['duration'] < 90,netflix_df['type'] == 'Movie',netflix_df['genre'] == 'Action'))
+
+3. Option 3, is to use np.logical_and() function with a repeating variable.(it is very tideous)
+short = np.logical_and(netflix_df['release_year'] >= 1990,netflix_df['release_year'] < 2000
+)
+short = np.logical_and(short, netflix_df['duration'] < 90)
+
+short = np.logical_and(short , netflix_df['type'] == 'Movie')
+
+short = np.logical_and(short, netflix_df['genre'] == 'Action')
+
+#Error 2
+for row in netflix_df[moviesReleased].iterrows():
+    duration = netflix_df['duration'].mode()[0]
+print(duration)
+
+The loop never useds the variable row, hence duration = netflix_df['duration'].mode()[0] filters for the whole dataset and not for the specified data.
+
+Correction.
+filter and then use that data to find the mode.
+movies_1990s = netflix_df[(netflix_df['release_year'] >= 1990)& (netflix_df['release_year'] < 2000)& (netflix_df['type'] == 'Movie' )] 
+
+duration = movies_1990s ['duration'].mode()[0]
+
+#Error 3
+for row in netflix_df[short]:
+    number = number + 1
+    counts.append(number)
+Looping through a dataframe gives you the columns not the rows, so this gave 11 which was the number of columns and not rows.
+
+Correction.
+
+Use the filter and apply it to the data.
+short = movies_1990s [(netflix_df['duration'] < 90) & (netflix_df['genre'] == 'Action')]
+
+short_movie_count = len(short) 
+or
+short_movie_count = short.shape[0] 
+or
+short_movie_count = short.sum() 
+
+#You use .sum when you have a filter that returns values that are ither true or fales.
+True means the values have met the condition ad false means they have not.
+Instead of using the datafram, you can use the saved filter.sum as it sums up the boolean values.
+True = 1
+False = 0
+Hence a sum can be 1+0+1+0
+For example:
+moviesReleased = np.logical_and(netflix_df['release_year'] >= 1990,netflix_df['release_year'] < 2000,netflix_df['type'] == 'Movie' )
+moviesReleased.sum() -  This counts the number of rows that have met the condition in moviesReleased, ie True using the logic above.
+
+
+The example below is used when you want to count several values from the same data.
+is_short = df['duration'] < 90
+is_action = df['genre'] == 'Action'
+
+is_short.sum()                 # how many short movies
+is_action.sum()                # how many action movies
+(is_short & is_action).sum()   # how many are both
+
+.sum() only gives a count on a True/False column. 
+If you call it on a normal numeric column, such as df['duration'].sum(), it adds up the actual values (here 370, the total minutes) instead of counting rows.
+"""
+#More Pandas functions.
+"""
+
+df.head(2) - First 2 rows.
+df tail(2) - Last 2 rows.
+df.shape - shows the number of rows and the number of columns 
+df describe() - gives the mean,the SD, etc for each column. It gives the info of each column.
+df.info() - gives the data types of each column.
+"""
